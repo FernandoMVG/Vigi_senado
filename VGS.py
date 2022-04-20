@@ -27,7 +27,7 @@ class Data():
        self.titulo = titulo
        self.experiencia = experiencia
        self.proyectos = proyectos
-       self: votaciones = votaciones
+       self.votaciones = votaciones
     
     
 class Congresista(Vigi_Senado, Data):
