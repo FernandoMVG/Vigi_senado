@@ -10,6 +10,17 @@ class Vigi_Senado(ABC):
     def Comparar():
         pass
 
+class Senado():
+    def __init__(self, curul: list(), Partido, Congresista):
+        self.curul = curul
+        
+    
+    def buscar(self, Data, Partido, Senador):
+        pass
+
+    def comparar(self, Data, Senador):
+        pass
+    
 class Data():
 
     pass 
