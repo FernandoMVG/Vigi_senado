@@ -22,9 +22,13 @@ class Senado():
         pass
     
 class Data():
-
-    pass 
-
+    def __init__(self, titulo, experiencia, proyectos, votaciones):
+       self.titulo = titulo
+       self.experiencia = experiencia
+       self.proyectos = proyectos
+       self: votaciones = votaciones
+    
+    
 class Congresista(Vigi_Senado, Data):
     def _init_(self, Nombre, PartidoP, 
     curul, correo, Data, nVotos):
