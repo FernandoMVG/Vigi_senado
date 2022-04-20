@@ -6,9 +6,11 @@ class Vigi_Senado(ABC):
     def expandirInfo():
         ...
     
+    @abstractmethod
     def Buscar():
         ...
     
+    @abstractmethod
     def Comparar():
         ...
 
