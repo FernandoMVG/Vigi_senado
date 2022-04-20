@@ -49,7 +49,7 @@ class Congresista(Vigi_Senado, Data):
         ...
         
 
-class Partido(Vigi_Senado, Data):
+class Partido(Vigi_Senado, Data, Congresista):
     def __init__(self, nSenadores, nombre, nVotos, Data, Congresista):
         self.nSenadores = nSenadores
         self.nombre = nombre
