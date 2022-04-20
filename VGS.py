@@ -4,22 +4,23 @@ from ast import Str
 class Vigi_Senado(ABC):
     @abstractmethod
     def expandirInfo():
-        pass
+        ...
+    
     def Buscar():
-        pass
+        ...
+    
     def Comparar():
-        pass
+        ...
 
 class Senado():
     def __init__(self, curul: list(), Partido, Congresista):
         self.curul = curul
         
-    
     def buscar(self, Data, Partido, Senador):
-        pass
+        ...
 
     def comparar(self, Data, Senador):
-        pass
+        ...
     
 class Data():
     def __init__(self, titulo, experiencia, proyectos, votaciones):
@@ -40,9 +41,11 @@ class Congresista(Vigi_Senado, Data):
         self.nVotos = nVotos
     
     def expandirInfo():
-        pass
+        ...
+        
     def Buscar():
-        pass    
+        ...
+        
 
 class Partido(Vigi_Senado, Data):
     def _init_(self, nSenadores, nombre, nVotos, Data, Congresista):
@@ -53,6 +56,7 @@ class Partido(Vigi_Senado, Data):
         self.Congresista = Congresista
 
     def expandirInfo():
-        pass
+        ...
+        
     def Buscar():
-        pass
+        ...
