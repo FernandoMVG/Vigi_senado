@@ -1,0 +1,59 @@
+@startuml
+
+abstract class VigiSenado{
+----
++expandirInfo()
++buscar()
++comparar()
+}
+
+class Usuario{
++nombre
+-correo
+-contraseña
+----
++buscar()
++comparar()
++expandirInfo()
+}
+
+class Senado{
++curul[]: int
++partidos[]: Partido
++senadores[]: Congresista
+}
+
+class Partido{
++nombre: str
++info[]: str
++congresistas[]: Congresista
+}
+
+class Congresista{
++nombre: str
++nCurul: int
++data: Data
+}
+
+class Data{
++titulados[]: str
++experiencia[]: str
++proyectos[]: str
++votos[]: str
++otros[]: str
+}
+
+VigiSenado<|-- Usuario
+
+Usuario<|-- Senado
+Usuario<|-- Partido
+Usuario<|-- Congresista
+
+Senado "1" *-- "*" Partido: partido
+Senado "1" *-- "108" Congresista: curul
+
+Partido"1" o-- "*"Congresista: senador
+
+Data--Congresista: información
+
+@enduml
