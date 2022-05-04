@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from ast import Str
+import Data as dt
 
 class Vigi_Senado(ABC):
     @abstractmethod
@@ -14,7 +15,7 @@ class Vigi_Senado(ABC):
     def Comparar():
         ...
 
-class Senado():
+class Senado(Vigi_Senado):
     def __init__(self, curul: list(), Partido, Congresista):
         self.curul = curul
         
@@ -32,7 +33,7 @@ class Data():
        self.votaciones = votaciones
     
     
-class Congresista(Vigi_Senado, Data):
+class Congresista(Vigi_Senado, dt):
     def __init__(self, Nombre, PartidoP, 
     curul, correo, Data, nVotos):
         self.Nombre = Nombre
@@ -41,24 +42,33 @@ class Congresista(Vigi_Senado, Data):
         self.correo = correo 
         self.Data = Data
         self.nVotos = nVotos
+
+    def mostrarInfo(self):
+        print(self.Nombre)
+        print(self.PartidoP)
+        print(self.curul)
+        print(self.correo)
+        print(self.nVotos)
     
-    def expandirInfo():
-        ...
-        
-    def Buscar():
-        ...
+    def expandirInfo(self):
+        dt.imprimirCongresista()
         
 
-class Partido(Vigi_Senado, Data, Congresista):
+class Partido(Vigi_Senado):
     def __init__(self, nSenadores, nombre, nVotos, Data, Congresista):
         self.nSenadores = nSenadores
         self.nombre = nombre
         self.nVotos = nVotos
         self.Data = Data
         self.Congresista = Congresista
+    
+    def mostrarInfo(self):
+        print(self.nombre)
+        print(self.nSenadores)
+        print(self.nVotos)
 
-    def expandirInfo():
-        ...
+    def expandirInfo(self):
+        dt.imprimirPartido()
         
     def Buscar():
         ...
