@@ -1,4 +1,3 @@
-#%%
 from __future__ import unicode_literals
 from base64 import encode
 import csv
@@ -32,7 +31,6 @@ class Congresista():
         #dt.imprimirCongresista() 
         ...
 
-
     def search():
         Senador = input("Ingrese el senador a buscar: ")
         with open("Sen_directorio.csv", "r") as archivo:
@@ -40,7 +38,7 @@ class Congresista():
             #Omite el encabezado
             next(lector, None)
             for fila in lector:
-                if(Senador == fila[1]):
+                if(Senador in fila[1]):
                     Periodo = fila[0]
                     Nombre = fila[1]
                     Genero = fila[2]
@@ -53,13 +51,11 @@ class Congresista():
                     Sen = Congresista(Periodo,Nombre,Genero,AñoNacimiento,CiudadNacimiento,DepNacimiento,Partido,nVotos,correo)
                     #print(Periodo,Nombre,Genero,AñoNacimiento,CiudadNacimiento,DepNacimiento,Partido,nVotos,correo)
                     print(Sen.Periodo, "/", Sen.Nombre, "/", Sen.PartidoP)
+                
+    #Congresista(Periodo,Nombre,Genero,AñoNacimiento,CiudadNacimiento,DepNacimiento,Partido,nVotos,correo)
+    #ListCongresistas.append(Congresista)
 
-        
-        #Congresista(Periodo,Nombre,Genero,AñoNacimiento,CiudadNacimiento,DepNacimiento,Partido,nVotos,correo)
-        #ListCongresistas.append(Congresista)
-#%%
 Congresista.search()
-
 
 
 
