@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from ast import Str
 import Data as dt
+import Node
 
 class Vigi_Senado(ABC):
     @abstractmethod
@@ -32,43 +33,83 @@ class Data():
        self.proyectos = proyectos
        self.votaciones = votaciones
     
-    
-class Congresista(Vigi_Senado, dt):
-    def __init__(self, Nombre, PartidoP, 
-    curul, correo, Data, nVotos):
-        self.Nombre = Nombre
-        self.PartidoP = PartidoP
-        self.curul = curul
+
+
+class Congresista(Vigi_Senado, dt, Node):
+    def __init__(self, nombre, genero, añoNacimiento, ciudadNacimiento,
+    depNacimiento, partidoP, periodo, nVotos, correo, redes):
+        self.Nombre = nombre
+        self.Genero = genero
+        self.AñoNacimiento = añoNacimiento
+        self.CiudadNacimiento = ciudadNacimiento
+        self.DepNacimiento = depNacimiento
+        self.PartidoP = partidoP
+        self.Periodo = periodo
+        self.nVotos = nVotos
         self.correo = correo 
-        self.Data = Data
-        self.nVotos = nVotos
+        self.redes = redes
 
-    def mostrarInfo(self):
-        print(self.Nombre)
-        print(self.PartidoP)
-        print(self.curul)
-        print(self.correo)
-        print(self.nVotos)
-    
-    def expandirInfo(self):
-        dt.imprimirCongresista()
-        
-
-class Partido(Vigi_Senado):
-    def __init__(self, nSenadores, nombre, nVotos, Data, Congresista):
-        self.nSenadores = nSenadores
+class Partido(Vigi_Senado, Node):
+    def __init__(self, nombre, fechaFundacion, presidente, nSenadores,
+    porcentaje, posicion, eslogan):
         self.nombre = nombre
-        self.nVotos = nVotos
-        self.Data = Data
-        self.Congresista = Congresista
-    
-    def mostrarInfo(self):
-        print(self.nombre)
-        print(self.nSenadores)
-        print(self.nVotos)
+        self.fechaFundacion = fechaFundacion
+        self.presidente = presidente
+        self.nSenadores = nSenadores
+        self.porcentaje = porcentaje
+        self.posicion = posicion
+        self.eslogan = eslogan
 
-    def expandirInfo(self):
-        dt.imprimirPartido()
-        
-    def Buscar():
-        ...
+class Lista:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def __repr__(self):
+        string = ""
+
+        if (self.head == None):
+            string += "Lista vacía"
+            return string
+    
+        string += f"CLL list: \n{self.head.data}" # PTR
+        P = self.head.next # Segundo nodo despues de PTR
+        while(P != self.head):
+            string += f" -> {P.data}"
+            P = P.next
+        return string
+    def insertP(self, value):
+
+        if(self.head == None):
+            self.head = Partido(value)
+            self.tail = self.head
+            self.tail.next = None
+            self.tail.child = None
+        else:
+            self.tail.next = Partido(value)
+            self.tail = self.tail.next
+            self.tail.next = None
+            self.tail.child = None
+
+    def insertC(self, value):
+
+        if(self.head == None):
+            print("List is empty")
+        else:
+            P = self.head
+            cont = True
+            while (P.next != None & cont):
+                if(P.data == value):
+                    if(P.child == None):
+                        P.child = Congresista(value)
+                        P = P.child
+                        P.child = None
+                    else:
+                        while (P.child !=  None):
+                            P = P.child
+                        P.child = Congresista(value)
+                        P = P.child
+                        P.child = None
+                    cont = False
+                else:
+                    P = P.next
