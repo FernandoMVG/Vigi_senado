@@ -1,5 +1,5 @@
 import csv
-
+import os
 class Vigi_Senado():
     def __init__(self):
         self.SENADO = Lista()
@@ -28,7 +28,7 @@ class Vigi_Senado():
                 Q = P.child
                 while (Q != None and cont):
                     if(nombre in Q.Nombre):
-                        print(f"{Q.Nombre}")
+                        print(f"Nombre: {Q.Nombre} antes del else ") 
                         Q = Q.child
                         i = 1
                     else:
@@ -45,7 +45,9 @@ class Vigi_Senado():
                     while (Q != None):
                         
                         if(nombre in Q.Nombre):
-                            print(f"{Q.Nombre}")
+                            print(f"Nombre: {Q.Nombre} \nGénero: {Q.Genero} \nAño de nacimiento: ", 
+                            f"{Q.AñoNacimiento}  \nCiudad de Nacimiento:  {Q.CiudadNacimiento}  \nDepartamento de nacimiento:  {Q.DepNacimiento}",
+                            f" \nPartido:  {Q.PartidoP}  \nPeriodo:  {Q.Periodo}  \nNúmero de votos: {Q.nVotos}  \nCorreo: {Q.correo}  \nRedes: {Q.redes}")
                             Q = Q.child
                             i = 1
                         else:
@@ -67,7 +69,7 @@ class Vigi_Senado():
         ...
     
     def CrearLista(self):
-        with open("Par_directorio.csv", "r") as archivoPar:
+        with open("PP_directorio.csv", "r") as archivoPar:
             lector = csv.reader(archivoPar, delimiter=";")
             #Omite el encabezado
             next(lector, None)
@@ -210,45 +212,90 @@ class Lista:
 vgs = Vigi_Senado()
 vgs.CrearLista()
 
-"""print(vgs.SENADO.__repr__())
-vgs.BuscarP("Colombia Humana")"""
+while True:
+    #Menu
+    print("\nBienvenido a Vigi-Senado")
+    print("\n1: Partidos")
+    print("2: Senadores")
+    print("3. Salir")
+    opc = int(input("Escoja una opción: "))
 
-
-#Menu
-print("Bienvenido a Vigi-Senado")
-print("\n\n1: Partidos")
-print("2: Senadores")
-opc = int(input("Escoja una opción: "))
-if (opc == 1):
-    print("\nPartidos Politicos")
-    print("1: Buscar Partido")
-    print("2: Mostrar Partidos")
-    print("3: Volver")
-    opc = int(input("Ingrese su opción: "))
+    #opción 1:
+    os.system('cls')
     if (opc == 1):
-        nombreP = input("Ingrese Nombre del Partido: ")
-        vgs.BuscarP(nombreP)
-        print("\n1: Mostrar Senadores")
-        print("2: Buscar Senador")
-        opcp = int(input("Ingrese su opción: "))
-        if(opcp == 1):
-            vgs.MostrarSenadores()
-        elif(opcp == 2):
-            nombreS = input("Ingrese nombre del senador: ")
-            vgs.BuscarC(nombreS, nombreP)
+        print("Partidos Politicos\n")
+        print("1: Buscar Partido")
+        print("2: Mostrar Partidos")
+        print("3: Volver")
+        print("")
+        opc = int(input("Ingrese su opción: "))
+        os.system('cls')
+        while True:
+
+            #opción 1: Partidos
+            if (opc == 1):
+                nombreP = input("Ingrese Nombre del Partido: ")
+                vgs.BuscarP(nombreP.title())
+                    
+                #Sub menu OP1: Partidos
+                print("\n1: Mostrar Senadores")
+                print("2: Buscar Senador")
+                print("3: Volver")
+                opcp = int(input("Ingrese su opción: "))
+                wei = True
+                while wei:
+
+                    ##opción 1: Submenu-PartidosOp1
+                    if(opcp == 1):
+                        vgs.MostrarSenadores()
+
+                    ##opción 2: Submenu-PartidosOp1
+                    elif(opcp == 2):
+                        nombreS = input("Ingrese nombre del senador: ")
+                        vgs.BuscarC(nombreS.title(), nombreP)
+                        print("")
+                        print("-----------------------------------------------------")
+                        print("¿Quieres buscar otro senador?")
+                        print("1. Si")
+                        print("2. No")
+                        op = int(input("Ingresa la opción: "))
+                        if op == 1:
+                            ...
+                        elif op == 2:
+                            os.system('cls')
+                            break
+
+                            
+
+                    ##opción 3: Submenu-Partidos --Debería de mandarme al externo, no repetir
+                    elif(opcp == 3):
+                        print("Red flag")
+                        os.system('cls')
+                        break
+
+            #opción 2: Partidos
+            elif(opc == 2):
+                vgs.MostrarPartidos()
+
+            #opción 3: Partidos
+            elif(opc == 3):
+                os.system('cls')
+                wei = False
+                
+    ##opción 2: Senadores
     elif(opc == 2):
-        vgs.MostrarPartidos()
-    elif(opc == 3):
-        ...
-elif(opc == 2):
-    print("\nSenadores")
-    print("1: Mostrar todos los Senadores")
-    print("2: Buscar Senador en especifico")
-    print("3: Volver")
-    opc = int(input("Ingrese su opción: "))
-    if (opc == 1):
-        ...
-    elif (opc == 2):
-        ...
-    elif (opc == 3):
-        ...
+        print("\nSenadores")
+        print("1: Mostrar todos los Senadores")
+        print("2: Buscar Senador en especifico")
+        print("3: Volver")
+        opc = int(input("Ingrese su opción: "))
+        if (opc == 1):
+            ...
+        elif (opc == 2):
+            ...
+        elif (opc == 3):
+            ...
+    elif opc == 3:
+        os.system('cls')
+        print("Gracias por usar nuestro programa :)")
+        break
