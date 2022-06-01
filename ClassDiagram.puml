@@ -1,59 +1,59 @@
 @startuml
 
-abstract class VigiSenado{
+class VigiSenado{
+SENADO: Lista()
 ----
-+expandirInfo()
-+buscar()
-+comparar()
-}
-
-class Usuario{
-+nombre
--correo
--contraseña
-----
-+buscar()
-+comparar()
-+expandirInfo()
-}
-
-class Senado{
-+curul[]: int
-+partidos[]: Partido
-+senadores[]: Congresista
-}
-
-class Partido{
-+nombre: str
-+info[]: str
-+congresistas[]: Congresista
+CrearLista()
+Comparar()
+BuscarP()
+BuscarC()
+MostrarPartidos()
+MostrarSenadores()
 }
 
 class Congresista{
-+nombre: str
-+nCurul: int
-+data: Data
+Nombre: str
+Genero: str
+AñoNacimiento: str
+CiudadNacimiento: str
+PartidoP: str
+nVotos: str
+correo: str
+redes: str
+----
+next: None
+prev: None
+child: Congresista()
+----
 }
 
-class Data{
-+titulados[]: str
-+experiencia[]: str
-+proyectos[]: str
-+votos[]: str
-+otros[]: str
+class Partido{
+nombreP: str
+fechaFundacion: str
+presidente: str
+posicion: str
+eslogan: str
+nSenadores: int
+porcentaje: str
+----
+next: Partido()
+prev: Partido()
+child: Congresista()
+----
 }
 
-VigiSenado<|-- Usuario
+class Lista{
+head: Partido()
+tail: Partido()
+----
+__repr__()
+insertP()
+insertC()
+}
 
-Usuario<|-- Senado
-Usuario<|-- Partido
-Usuario<|-- Congresista
+VigiSenado *-- Lista
 
-Senado "1" *-- "*" Partido: partido
-Senado "1" *-- "108" Congresista: curul
-
-Partido"1" o-- "*"Congresista: senador
-
-Data--Congresista: información
+Lista *-- Partido
+Partido *-- Congresista
 
 @enduml
