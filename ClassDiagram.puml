@@ -52,7 +52,6 @@ insertC()
 }
 
 VigiSenado *-- Lista
-
 Lista *-- Partido
 Partido *-- Congresista
 
